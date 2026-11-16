@@ -196,10 +196,14 @@
   function renderChips() {
     var wrap = document.getElementById('searchWrap');
     var tab = currentTab();
-    var show = !!tab.zone || tab.id === 'all';
-    wrap.classList.toggle('hidden', !show);
-    if (!show) return;
-    var cats = (state.data && state.data.categories) ? state.data.categories : ['전체'];
+    var isItemTab = !!tab.zone || tab.id === 'all';
+    var showSearch = isItemTab || tab.id === 'simple';
+    wrap.classList.toggle('hidden', !showSearch);
+    if (!showSearch) return;
+    var cats = isItemTab
+      ? ((state.data && state.data.categories) ? state.data.categories : ['전체'])
+      : ['전체', '아이 맞춤'];
+    if (!isItemTab && cats.indexOf(state.category) === -1) state.category = '전체';
     document.getElementById('chips').innerHTML = cats.map(function (c) {
       return '<button class="chip-btn" type="button" data-cat="' + esc(c) + '" aria-pressed="' +
         (state.category === c ? 'true' : 'false') + '">' + esc(c) + '</button>';
