@@ -300,6 +300,7 @@
     }).join('');
     return '<section class="section">' +
       '<div class="section-head"><h2 class="section-title">🔍 오늘 뭐 먹지?</h2>' + nav + '</div>' +
+      (menu.note ? '<p class="section-caption">' + esc(menu.note) + '</p>' : '') +
       groups +
     '</section>';
   }
@@ -363,6 +364,7 @@
         '<div class="week-date"><b>' + dayNum + '</b>' +
           esc(day.day || '') + '요일</div>' +
         '<div class="week-meals">' +
+          (day.breakfast ? '<div class="week-row"><span class="k">아침</span><span>' + esc(day.breakfast) + '</span></div>' : '') +
           (day.lunch ? '<div class="week-row"><span class="k">점심</span><span>' + esc(day.lunch) + '</span></div>' : '') +
           (day.dinner ? '<div class="week-row"><span class="k">저녁</span><span>' + esc(day.dinner) + '</span></div>' : '') +
           (day.snack ? '<div class="week-row"><span class="k">간식</span><span>' + esc(day.snack) + '</span></div>' : '') +
@@ -372,6 +374,7 @@
     return '<section class="section">' +
       '<div class="section-head"><h2 class="section-title">📅 이번 주 식단</h2>' +
         '<span class="section-note">' + plan.length + '일</span></div>' +
+      (state.data.weekNote ? '<p class="section-caption">' + esc(state.data.weekNote) + '</p>' : '') +
       '<div class="card" style="padding:4px 6px">' + rows + '</div>' +
       '<p class="section-note" style="display:block;margin-top:10px;text-align:center">보유 재료로 짠 제안 식단이에요 · 장보기 탭과 함께 보세요</p>' +
     '</section>';
