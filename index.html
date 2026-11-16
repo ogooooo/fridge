@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#f4faf6" />
+<meta name="description" content="우주아라네 냉장실 · 냉동실 · 실온 재료와 오늘 식단을 한 번에 보는 냉장고 웹앱" />
+<title>우주아라네 냉장고</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧊</text></svg>" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+</div>
+
+<main class="app">
+  <header class="hero">
+    <div class="fridge-art" aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="108" height="108">
+        <defs>
+          <linearGradient id="fridgeBody" x1="0" y1="0" x2="0.3" y2="1">
+            <stop offset="0" stop-color="#ffffff" />
+            <stop offset="1" stop-color="#e6f5f2" />
+          </linearGradient>
+          <linearGradient id="fridgeDoor" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f2fbf8" />
+            <stop offset="1" stop-color="#d8efe9" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="60" cy="108" rx="30" ry="5" fill="#cfe6df" opacity="0.55" />
+        <rect x="35" y="12" width="50" height="92" rx="15" fill="url(#fridgeBody)" stroke="#b9dfd6" stroke-width="2.6" />
+        <rect x="39.5" y="17" width="41" height="30" rx="9" fill="url(#fridgeDoor)" />
+        <rect x="39.5" y="50.5" width="41" height="48" rx="9" fill="url(#fridgeDoor)" />
+        <rect x="70" y="26" width="4.5" height="12" rx="2.2" fill="#8bcfc1" />
+        <rect x="70" y="60" width="4.5" height="18" rx="2.2" fill="#8bcfc1" />
+        <circle cx="49" cy="32" r="3.2" fill="#ffd3dd" />
+        <path d="M60 74 l1.6 4.2 4.4 1.6 -4.4 1.6 -1.6 4.2 -1.6 -4.2 -4.4 -1.6 4.4 -1.6 z" fill="#c9e6ff" />
+      </svg>
+      <span class="chip chip-1">🔍</span>
+      <span class="chip chip-2">❤️</span>
+      <span class="chip chip-3">❄️</span>
+    </div>
+
+    <h1 id="appTitle">우주아라네 냉장고</h1>
+    <p class="subtitle" id="appSubtitle">냉장실 · 냉동실 · 실온 재료를 한 번에 볼 수 있어요</p>
+    <p class="updated"><span aria-hidden="true">⏱</span> 마지막 업데이트 <span id="updatedAt">불러오는 중…</span></p>
+
+    <div class="badges" id="badges"></div>
+  </header>
+
+  <nav class="tabs" id="tabs" aria-label="냉장고 보기"></nav>
+
+  <div class="search-wrap" id="searchWrap">
+    <div class="searchbar">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input id="search" type="search" inputmode="search" placeholder="재료 검색 (예: 우유, 고등어)" aria-label="재료 검색" autocomplete="off" />
+      <button class="search-clear" id="searchClear" type="button" hidden aria-label="검색어 지우기">✕</button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="카테고리 필터"></div>
+  </div>
+
+  <div id="content" class="content" aria-live="polite"></div>
+
+  <footer class="foot">
+    <p class="foot-main">🧊 우주아라네 냉장고</p>
+    <p class="foot-sub">재료는 <code>data.json</code>만 고쳐서 저장하면 바로 반영돼요</p>
+  </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
