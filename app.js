@@ -149,6 +149,8 @@
       if (!q) return true;
       var hay = norm([it.name, it.note, it.category, it.zone, it.qty].join(' '));
       return hay.indexOf(q) !== -1;
+    }).sort(function (a, b) {
+      return (state.consumed[a.id] ? 1 : 0) - (state.consumed[b.id] ? 1 : 0);
     });
   }
 
@@ -320,7 +322,7 @@
     if (!items().length) return todaySection() + (emptyItems());
     var html = todaySection() + hotSection();
     if (hasFilter()) {
-      var list = filteredItems(usableItems());
+      var list = filteredItems(items());
       html += '<section class="section"><div class="section-head">' +
         '<h2 class="section-title">🔎 검색 결과</h2><span class="section-note">' + list.length + '개</span></div>' +
         (list.length
@@ -330,7 +332,7 @@
       return html;
     }
     html += '<section class="section"><div class="section-head">' +
-      '<h2 class="section-title">🧊 재료 전체</h2><span class="section-note">' + usableItems().length + '개</span></div>' +
+      '<h2 class="section-title">🧊 재료 전체</h2><span class="section-note">' + items().length + '개</span></div>' +
       '<div class="card">' +
         ZONES.map(function (z) { return zoneBlock(z, items(), { limit: 4 }); }).join('') +
       '</div></section>';
@@ -338,7 +340,7 @@
   }
 
   function viewZone(tab) {
-    var list = filteredItems(usableItems().filter(function (it) { return it.zone === tab.zone; }));
+    var list = filteredItems(items().filter(function (it) { return it.zone === tab.zone; }));
     var zone = ZONES.filter(function (z) { return z.key === tab.zone; })[0];
     if (!items().length) return emptyItems();
     return '<section class="section"><div class="section-head">' +
